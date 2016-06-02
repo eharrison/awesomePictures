@@ -37,7 +37,6 @@ class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         return cell
     }
     
-    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 15
     }

@@ -13,12 +13,5 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoImageView: DesignableImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    
-    override func awakeFromNib() {
-        photoImageView.layer.shadowColor = UIColor.darkGrayColor().CGColor
-        photoImageView.layer.shadowOffset = CGSizeMake(2, 2)
-        photoImageView.layer.shadowOpacity = 1
-        photoImageView.layer.shadowRadius = 3.0
-    }
-    
+        
 }
