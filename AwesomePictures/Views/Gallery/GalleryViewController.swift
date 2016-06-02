@@ -28,9 +28,13 @@ class GalleryViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("instagram", forIndexPath: indexPath) as! GalleryTableViewCell
-        
-        return cell
+        if indexPath.row == 0{
+            let cell = tableView.dequeueReusableCellWithIdentifier("instagram", forIndexPath: indexPath) as! GalleryTableViewCell
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCellWithIdentifier("unsplash", forIndexPath: indexPath) as! GalleryTableViewCell
+            return cell
+        }
     }
 
 }

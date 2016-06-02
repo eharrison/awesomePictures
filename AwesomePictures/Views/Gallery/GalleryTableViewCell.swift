@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -18,6 +18,7 @@ class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -31,9 +32,14 @@ class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photo", forIndexPath: indexPath)
-        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photo", forIndexPath: indexPath) as! GalleryCollectionViewCell
+                
         return cell
+    }
+    
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 15
     }
     
 }
