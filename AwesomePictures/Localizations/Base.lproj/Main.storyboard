@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qDU-QG-Ebt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qDU-QG-Ebt">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -179,10 +179,74 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Photo Viewer" id="XTD-W7-MZU"/>
+                    <connections>
+                        <segue destination="d56-Yo-2xq" kind="show" identifier="detailsSegue" animates="NO" id="xnV-cH-GDq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FoA-6l-Y6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="52.5" y="364.5"/>
+        </scene>
+        <!--Photo Viewer-->
+        <scene sceneID="QGW-iT-1qO">
+            <objects>
+                <viewController storyboardIdentifier="Details" automaticallyAdjustsScrollViewInsets="NO" id="d56-Yo-2xq" customClass="DetailsViewController" customModule="AwesomePictures" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xqz-ra-Y7J"/>
+                        <viewControllerLayoutGuide type="bottom" id="gfp-t9-hzV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UtM-CJ-X8S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="1df-UN-Btq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="tCI-z3-2LG">
+                                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="tCI-z3-2LG" firstAttribute="centerX" secondItem="1df-UN-Btq" secondAttribute="centerX" id="75x-dr-BAh"/>
+                                    <constraint firstItem="tCI-z3-2LG" firstAttribute="top" secondItem="1df-UN-Btq" secondAttribute="top" constant="64" id="Bpc-gQ-32R"/>
+                                    <constraint firstAttribute="trailing" secondItem="tCI-z3-2LG" secondAttribute="trailing" id="CTE-Ql-7aS"/>
+                                    <constraint firstItem="tCI-z3-2LG" firstAttribute="centerY" secondItem="1df-UN-Btq" secondAttribute="centerY" constant="32" id="Vxu-Lo-AlM"/>
+                                    <constraint firstAttribute="bottom" secondItem="tCI-z3-2LG" secondAttribute="bottom" id="jfd-5S-a2g"/>
+                                    <constraint firstItem="tCI-z3-2LG" firstAttribute="leading" secondItem="1df-UN-Btq" secondAttribute="leading" id="vc8-2c-vQi"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="d56-Yo-2xq" id="Nrk-jm-qmQ"/>
+                                    <outletCollection property="gestureRecognizers" destination="UVe-hf-NV7" appends="YES" id="9ur-HA-DaA"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1df-UN-Btq" firstAttribute="top" secondItem="UtM-CJ-X8S" secondAttribute="topMargin" id="2Fg-RJ-kGI"/>
+                            <constraint firstAttribute="trailing" secondItem="1df-UN-Btq" secondAttribute="trailing" id="7ms-X5-lhS"/>
+                            <constraint firstItem="gfp-t9-hzV" firstAttribute="top" secondItem="1df-UN-Btq" secondAttribute="bottom" id="9Ck-Lk-GAq"/>
+                            <constraint firstItem="1df-UN-Btq" firstAttribute="leading" secondItem="UtM-CJ-X8S" secondAttribute="leading" id="OpF-0x-bor"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photo Viewer" id="gKl-ky-Yhf">
+                        <barButtonItem key="backBarButtonItem" id="ONQ-BY-csf"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="photoDoubleTapGesture" destination="UVe-hf-NV7" id="yTb-dt-ogp"/>
+                        <outlet property="photoImageView" destination="tCI-z3-2LG" id="us7-mt-YAk"/>
+                        <outlet property="scrollView" destination="1df-UN-Btq" id="8sF-BD-58g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FRp-Po-NOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="UVe-hf-NV7">
+                    <connections>
+                        <action selector="didDoubleTapOnPhotoImageView:" destination="d56-Yo-2xq" id="IvU-Eh-D6v"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="521.5" y="364.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="spp-kI-DAB">
@@ -192,6 +256,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kI5-Qr-Dnq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.23137254901960785" green="0.4823529411764706" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>

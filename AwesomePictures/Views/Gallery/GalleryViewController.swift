@@ -9,7 +9,7 @@
 import UIKit
 import AwesomeLibrary
 
-class GalleryViewController: UITableViewController {
+class GalleryViewController: UITableViewController, GalleryDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,9 @@ class GalleryViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+//        if let detailsViewController = segue.destinationViewController as? DetailsViewController{
+//            detailsViewController.galleryViewModel = sender as? GalleryViewModel
+//        }
     }
     
     // MARK: - TableView Data Source
@@ -30,11 +32,19 @@ class GalleryViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             let cell = tableView.dequeueReusableCellWithIdentifier("instagram", forIndexPath: indexPath) as! GalleryTableViewCell
+            cell.delegate = self
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("unsplash", forIndexPath: indexPath) as! GalleryTableViewCell
+            cell.delegate = self
             return cell
         }
+    }
+    
+    // MARK: - Gallery Delegate
+    
+    func openPhoto() {
+        self.performSegueWithIdentifier("detailsSegue", sender: self)
     }
 
 }

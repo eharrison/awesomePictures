@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9371424F1CF7DF78BEF53A40091E22B92BEB972C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9371424F1CF7DF78BEF53A40091E22B92BEB972C" : 0,
+    "4F5C3E04C544EE5EAECF3194EDAB9ECB89C4E852" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "38FCFA69-D81B-4DA0-B20F-138B37C65B6F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9371424F1CF7DF78BEF53A40091E22B92BEB972C" : "awesomePictures\/",
+    "4F5C3E04C544EE5EAECF3194EDAB9ECB89C4E852" : "awesomeLibrary\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AwesomePictures",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AwesomePictures.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/eharrison\/awesomeLibrary.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4F5C3E04C544EE5EAECF3194EDAB9ECB89C4E852"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/eharrison\/awesomePictures.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9371424F1CF7DF78BEF53A40091E22B92BEB972C"
+    }
+  ]
+}
