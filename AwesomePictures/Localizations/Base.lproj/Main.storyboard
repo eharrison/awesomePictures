@@ -180,7 +180,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Photo Viewer" id="XTD-W7-MZU"/>
                     <connections>
-                        <segue destination="d56-Yo-2xq" kind="show" identifier="detailsSegue" animates="NO" id="xnV-cH-GDq"/>
+                        <segue destination="d56-Yo-2xq" kind="show" identifier="detailsSegue" id="xnV-cH-GDq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FoA-6l-Y6g" userLabel="First Responder" sceneMemberID="firstResponder"/>

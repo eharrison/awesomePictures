@@ -17,11 +17,11 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.photoImageView.hidden = true
+        //self.photoImageView.hidden = true
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.animateIn()
+        //self.animateIn()
     }
 
     // MARK: - Navigation
