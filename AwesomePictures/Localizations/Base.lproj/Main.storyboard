@@ -248,10 +248,10 @@
             </objects>
             <point key="canvasLocation" x="521.5" y="364.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="spp-kI-DAB">
             <objects>
-                <navigationController id="qDU-QG-Ebt" sceneMemberID="viewController">
+                <navigationController id="qDU-QG-Ebt" customClass="CustomNavigationController" customModule="AwesomePictures" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kI5-Qr-Dnq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
