@@ -18,13 +18,18 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        photoImageView.image = nil
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         
         if let image = detailsViewModel.image {
             //photoImageView.startProgressAnimation()
             //photoImageView.updateProgress(0.5, animationTime: 1)
-            photoImageView.image = nil
+            view.startLoadingAnimation()
             photoImageView.setImage(image.thumbnailUrl, placeholder: nil, showLoading: true) { (image) in
                 //self.photoImageView.updateProgress(1, animationTime: 1)
+                self.view.stopLoadingAnimation()
             }
         }
     }

@@ -18,6 +18,8 @@ class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let itemSpacing: CGFloat = 15
+    
     var delegate: GalleryDelegate?
     var images = [FileObject]() {
         didSet {
@@ -28,6 +30,13 @@ class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        //makes sure cells are going to be auto centered
+        let collectionViewLayout: CenterCellCollectionViewFlowLayout = CenterCellCollectionViewFlowLayout()
+        collectionViewLayout.sectionInset = UIEdgeInsets(top: 0, left: itemSpacing, bottom: 0, right: itemSpacing)
+        collectionViewLayout.minimumInteritemSpacing = itemSpacing
+        collectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        
+        collectionView.collectionViewLayout = collectionViewLayout
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -59,10 +68,6 @@ class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 15
-    }
-    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.cellForItemAtIndexPath(indexPath)?.contentView.animateTouchDown({
             self.delegate?.openImage(self.images[indexPath.row])
@@ -71,4 +76,16 @@ class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         //collectionView.cellForItemAtIndexPath(indexPath)?.contentView.updateProgress(1, animationTime: 5)
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if images[indexPath.row].isSquare() {
+            return CGSizeMake(collectionView.frame.size.height, collectionView.frame.size.height)
+        }else {
+            var aspectSize = CGSizeMake((collectionView.frame.size.height*CGFloat(images[indexPath.row].width!))/CGFloat(images[indexPath.row].height!), collectionView.frame.size.height)
+            if aspectSize.width > collectionView.frame.size.width - itemSpacing*2 {
+                aspectSize.width = collectionView.frame.size.width - itemSpacing*2
+            }
+            
+            return aspectSize
+        }
+    }
 }
