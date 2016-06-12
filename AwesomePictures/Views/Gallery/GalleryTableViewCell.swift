@@ -10,7 +10,7 @@ import UIKit
 import AwesomeLibrary
 
 protocol GalleryDelegate {
-    func openPhoto()
+    func openImage(image: FileObject)
 }
 
 class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -19,6 +19,11 @@ class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     @IBOutlet weak var collectionView: UICollectionView!
     
     var delegate: GalleryDelegate?
+    var images = [FileObject]() {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,11 +39,23 @@ class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     //MARK: - CollectionView Data Source
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return images.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photo", forIndexPath: indexPath) as! GalleryCollectionViewCell
+        
+        //cell.photoImageView.startProgressAnimation()
+        //cell.photoImageView.updateProgress(0.5, animationTime: 1)
+        cell.photoImageView.startLoadingAnimation()
+        cell.photoImageView?.image = nil
+        cell.setImage(images[indexPath.row].thumbnailUrl, placeholder: nil, imageViewName: "photoImageView", collectionView: collectionView, indexPath: indexPath, showLoading: true) { (image) in
+            //cell.photoImageView.updateProgress(1, animationTime: 1)
+            cell.photoImageView.stopLoadingAnimation()
+        }
+        
+        cell.titleLabel.text = images[indexPath.row].title
+        
         return cell
     }
     
@@ -48,7 +65,7 @@ class GalleryTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.cellForItemAtIndexPath(indexPath)?.contentView.animateTouchDown({
-            self.delegate?.openPhoto()
+            self.delegate?.openImage(self.images[indexPath.row])
         })
         //collectionView.cellForItemAtIndexPath(indexPath)?.contentView.startLoading()
         //collectionView.cellForItemAtIndexPath(indexPath)?.contentView.updateProgress(1, animationTime: 5)

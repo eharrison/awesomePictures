@@ -14,14 +14,19 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet var photoDoubleTapGesture: UITapGestureRecognizer!
     
+    var detailsViewModel = DetailsViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.photoImageView.hidden = true
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        //self.animateIn()
+        if let image = detailsViewModel.image {
+            //photoImageView.startProgressAnimation()
+            //photoImageView.updateProgress(0.5, animationTime: 1)
+            photoImageView.image = nil
+            photoImageView.setImage(image.thumbnailUrl, placeholder: nil, showLoading: true) { (image) in
+                //self.photoImageView.updateProgress(1, animationTime: 1)
+            }
+        }
     }
 
     // MARK: - Navigation

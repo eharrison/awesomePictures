@@ -7,9 +7,23 @@
 //
 
 import UIKit
+import AwesomeLibrary
 
 class GalleryViewModel: NSObject {
     
-    var galleryPhotoFrame: CGRect?
+    var instagramPictures = [FileObject]()
+    var unsplashPictures = [FileObject]()
     
+    func fetchUnsplashPictures(completion:(success: Bool) -> Void){
+        AAPIFetcher.fetchData(unsplashListPicturesUrl, timeOut: timeOut) { (success, data) in
+            if success {
+                if let data = data {
+                    self.unsplashPictures = AAPIParser.unsplashToFileObjects(AAPIParser.unsplashPictures(data))
+                }
+            }
+            
+            completion(success: success)
+        }
+    }
+        
 }

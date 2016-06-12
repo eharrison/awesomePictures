@@ -10,18 +10,20 @@ import UIKit
 
 extension UIView {
     
-    func startLoading(){
-        stopLoading()
+    // MARK: - Progress
+    
+    func startProgressAnimation(){
+        stopProgressAnimation()
         
-        let loadingView = LoadingView.loadingView()
+        let loadingView = ProgressView.newFromNib()
         loadingView.frame = self.bounds
         self.addSubview(loadingView)
         loadingView.show()
     }
     
-    func stopLoading(){
+    func stopProgressAnimation(){
         for subview in subviews{
-            if let subview = subview as? LoadingView {
+            if let subview = subview as? ProgressView {
                 subview.hide()
                 break
             }
@@ -30,9 +32,33 @@ extension UIView {
     
     func updateProgress(progress: CGFloat, animationTime: Double){
         for subview in subviews{
-            if let subview = subview as? LoadingView {
+            if let subview = subview as? ProgressView {
                 subview.updateProgressBar(progress, animationTime: animationTime)
                 break
+            }
+        }
+    }
+    
+    // MARK: - Loading    
+    
+    func startLoadingAnimation(){
+        startLoadingAnimation("")
+    }
+    
+    func startLoadingAnimation(message: String){
+        stopLoadingAnimation()
+        
+        let loadingView = LoadingView.newFromNib()
+        loadingView.messageLabel.text = message
+        loadingView.frame = self.bounds
+        self.addSubview(loadingView)
+        loadingView.show()
+    }
+    
+    func stopLoadingAnimation(){
+        for subview in subviews{
+            if let subview = subview as? LoadingView {
+                subview.hide()
             }
         }
     }

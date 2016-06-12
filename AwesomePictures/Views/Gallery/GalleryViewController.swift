@@ -11,16 +11,28 @@ import AwesomeLibrary
 
 class GalleryViewController: UITableViewController, GalleryDelegate {
 
+    var galleryViewModel = GalleryViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidLoad()
+        
+        view.startLoadingAnimation()
+        galleryViewModel.fetchUnsplashPictures { (success) in
+            self.view.stopLoadingAnimation()
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if let detailsViewController = segue.destinationViewController as? DetailsViewController{
-//            detailsViewController.galleryViewModel = sender as? GalleryViewModel
-//        }
+        if let detailsViewController = segue.destinationViewController as? DetailsViewController {
+            detailsViewController.detailsViewModel.image = sender as? FileObject
+        }
     }
     
     // MARK: - TableView Data Source
@@ -37,14 +49,15 @@ class GalleryViewController: UITableViewController, GalleryDelegate {
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("unsplash", forIndexPath: indexPath) as! GalleryTableViewCell
             cell.delegate = self
+            cell.images = galleryViewModel.unsplashPictures
             return cell
         }
     }
     
     // MARK: - Gallery Delegate
     
-    func openPhoto() {
-        self.performSegueWithIdentifier("detailsSegue", sender: self)
+    func openImage(image: FileObject) {
+        self.performSegueWithIdentifier("detailsSegue", sender: image)
     }
 
 }
