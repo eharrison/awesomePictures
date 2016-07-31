@@ -15,6 +15,8 @@ class GalleryViewController: UITableViewController, GalleryDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(AAPIParser.propertyNames(galleryViewModel))
     }
     
     override func viewDidAppear(animated: Bool) {
